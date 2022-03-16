@@ -7,4 +7,17 @@ services:
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/www:/app/www
+    links:
+      - php-fpm
+  php-fpm:
+    container_name: php-fpm-fpm
+    image: php:7.4-fpm-alpine
+    expose:
+      - '9000'
+    volumes:
+      - ./php-fpm/app:/app
+
+
+
+
 
