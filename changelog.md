@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0]- 2022-03-25
+### Added
+- Добавлен сервис для выполнения консольных команд в приложении (php-cli)
+- В проект добавлен composer
+- Установлен monolog/monolog
+- Настроено использование логгера Monolog\Logger
+
 
 ## [0.2.0]- 2022-03-16
 ### Added
