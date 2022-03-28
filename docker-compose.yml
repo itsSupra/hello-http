@@ -10,14 +10,36 @@ services:
     links:
       - php-fpm
   php-fpm:
-    container_name: php-fpm-fpm
-    image: php:7.4-fpm-alpine
+    build:
+      context: php/docker
+      dockerfile: php-fpm.docker
     expose:
       - '9000'
     volumes:
-      - ./php-fpm/app:/app
+      - ./php/app:/app
+    links:
+      - mysql
   php-cli:
     build:
-      context: ./php-fpm
+      context: php/docker
+      dockerfile: php-cli.docker
     volumes:
-      - ./php-fpm/app:/app
+      - ./php/app:/app
+    links:
+      - mysql
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    expose:
+      - '3306'
+    ports:
+      - '127.0.0.1:33080:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+volumes:
+  mysql-data:
+

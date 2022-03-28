@@ -1,0 +1,7 @@
+FROM php:7.4-fpm-alpine
+
+RUN apk add git libpq-dev \
+    && docker-php-ext-install pdo \
+    && docker-php-ext-install pdo_mysql
+
+WORKDIR /app
